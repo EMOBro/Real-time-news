@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时新闻</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .news-item:hover {
+            background-color: #f9f9f9;
+        }
+        .news-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .news-content {
+            font-size: 14px;
+            color: #555;
+        }
+        .news-source {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+        .news-title i {
+            margin-right: 5px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>实时新闻</h1>
+    </header>
+    <div class="container" id="news-container"></div>
+
+    <script>
+        async function fetchNews() {
+            const apiUrl = 'https://orz.ai/api/v1/dailynews/?platform=bilibili';
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                displayNews(data.data);
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        }
+
+        function displayNews(newsList) {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
+            newsList.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+
+                const newsTitle = document.createElement('div');
+                newsTitle.classList.add('news-title');
+                newsTitle.innerHTML = `<i class="fas fa-newspaper"></i> ${news.title}`;
+                newsTitle.onclick = () => redirectToDetail(news.url);
+                newsItem.appendChild(newsTitle);
+
+                const newsContent = document.createElement('div');
+                newsContent.classList.add('news-content');
+                newsContent.textContent = news.content;
+                newsItem.appendChild(newsContent);
+
+                const newsSource = document.createElement('div');
+                newsSource.classList.add('news-source');
+                newsSource.textContent = `来源: ${news.source} - 发布时间: ${news.publish_time}`;
+                newsItem.appendChild(newsSource);
+
+                newsContainer.appendChild(newsItem);
+            });
+        }
+
+        function redirectToDetail(url) {
+            window.location.href = url;
+        }
+
+        window.onload = fetchNews;
+    </script>
+</body>
+</html>

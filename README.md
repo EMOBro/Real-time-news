@@ -1,2 +1,66 @@
-# Real-time-news
-This project is a real-time news front-end page display application, which obtains the latest news data from the API by sending GET requests and presents it in a beautiful and responsive way on the web page.
+# 实时新闻前端页面项目
+
+## 项目简介
+
+本项目是一个实时新闻前端页面展示应用，通过发送GET请求从API获取最新的新闻数据，并以美观、响应式的方式呈现在网页上。用户可以点击新闻标题，跳转至对应的新闻详情页面，获取更详细的信息。
+
+## 功能特点
+
+- **响应式设计**：页面能够自适应不同屏幕尺寸，包括桌面端和移动端设备，确保用户在任何设备上都能获得良好的浏览体验。
+- **动画效果**：当鼠标悬停在新闻项上时，背景色会发生变化，增强了用户与页面的交互感受。
+- **图标使用**：每个新闻标题前都添加了新闻图标，提升了页面的视觉效果和辨识度。
+- **点击跳转**：新闻标题可点击，点击后会跳转到相应的新闻详情页，方便用户深入了解新闻内容。
+
+## 安装步骤
+
+1. **克隆项目到本地**：
+
+   ```bash
+   git clone https://github.com/your-username/real-time-news.git
+   ```
+
+2. **安装依赖**：
+
+   ```bash
+   npm install
+   ```
+
+3. **启动项目**：
+
+   ```bash
+   npm start
+   ```
+
+## 使用方法
+
+1. 打开浏览器，访问项目运行的地址。
+2. 页面将自动加载最新的新闻数据。
+3. 点击新闻标题，即可跳转到对应的新闻详情页面。
+
+## 示例与截图
+
+以下是项目运行的截图：
+
+![](./screenshot.png)
+
+## 项目目录结构
+
+```
+real-time-news/
+├── index.html
+├── styles.css
+├── script.js
+└── screenshot.png
+```
+
+## 贡献指南
+
+欢迎对本项目提出问题和建议。详细的贡献指南请参阅 [CONTRIBUTING.md](./CONTRIBUTING.md)。
+
+## 许可证
+
+本项目采用 MIT License。
+
+## 联系信息
+
+如有任何问题或建议，请随时通过 [your-email@example.com](mailto:your-email@example.com) 与我联系。
